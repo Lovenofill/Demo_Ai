@@ -1,11 +1,48 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { Book } from "../data/mockdata";
+import { notify } from "../components/helper";
+
+export const testA = (value: Book) => {
+  const storedItems = JSON.parse(window.localStorage.getItem("product"));
+
+  console.log("storedItems", storedItems);
+
+  console.log("value", value);
+
+  let data: Book[] = [];
+
+  if (storedItems !== null && storedItems.length) {
+    data = storedItems;
+  }
+
+  if (storedItems !== null && storedItems.length) {
+    const find: Book = storedItems.find((item: Book) => item.id === value.id);
+
+    console.log("find", find);
+    console.log("find3", !find === undefined);
+    console.log("storedItems if", storedItems);
+
+    if (find === undefined) {
+      data = [...storedItems, value];
+    }
+  } else {
+    data = [value];
+  }
+
+  console.log("data", data);
+
+  if (data !== null) {
+    notify("เพิ่มสินค้าลงตะกร้าแล้ว");
+    window.localStorage.setItem("product", JSON.stringify(data));
+  }
+};
 
 export const ProductDetail = () => {
-  const { state } = useLocation();
-
+  const state: Book = useLocation().state;
   console.log("state", state);
+
   const [quantity, setQuantity] = useState(1);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -25,6 +62,7 @@ export const ProductDetail = () => {
         (prevIndex - 1 + state.imagesList.length) % state.imagesList.length
     );
   };
+
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col lg:flex-row gap-8">
@@ -92,7 +130,10 @@ export const ProductDetail = () => {
               className="border rounded px-2 py-1 w-16"
             />
           </div>
-          <button className="w-full sm:w-auto bg-orange-500 text-white px-6 py-2 rounded hover:bg-orange-600 transition-colors">
+          <button
+            onClick={() => testA(state)}
+            className="w-full sm:w-auto bg-orange-500 text-white px-6 py-2 rounded hover:bg-orange-600 transition-colors"
+          >
             Add to Cart
           </button>
           <div className="mt-8">

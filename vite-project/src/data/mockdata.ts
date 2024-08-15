@@ -1,4 +1,4 @@
-interface Book {
+export interface Book {
   id: number;
   title: string;
   author: string;
@@ -9,7 +9,7 @@ interface Book {
   addToCart: boolean;
   imagesList: string[];
 }
-interface Product {
+export interface Product {
   id: string;
   name: string;
   price: number;
