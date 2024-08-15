@@ -1,26 +1,19 @@
-import { Grid, List,  Star } from 'lucide-react';
-import { books } from './data/mockdata';
+import { Grid, List, Star } from "lucide-react";
+import { books } from "./data/mockdata";
+import { useNavigate } from "react-router-dom";
+import { PathPublicRouter } from "./Routes/PathRoutes";
 
 export const Products = () => {
-    return (
-      <div className="min-h-screen flex flex-col">
-      {/* <header className="bg-white p-4">
-        <div className="flex justify-between items-center">
-          <div className="text-2xl font-bold">EcoMarket</div>
-          <input type="text" placeholder="Search" className="border p-2 rounded w-48" />
-          <div>
-            <button className="bg-green-500 text-white px-4 py-2 rounded flex items-center">
-              <ShoppingCart className="mr-2" />
-              <span>$35.19</span>
-            </button>
-          </div>
-        </div>
-      </header> */}
+  const navigate = useNavigate();
 
+  return (
+    <div className="min-h-screen flex flex-col">
       <div className="flex flex-1">
         <aside className="w-64 bg-gray-100 p-4">
           <div className="mb-4">
-            <h4 className="text-lg font-semibold mb-2">Eco-friendly book type</h4>
+            <h4 className="text-lg font-semibold mb-2">
+              Eco-friendly book type
+            </h4>
             <div className="flex flex-col space-y-2">
               <label className="flex items-center">
                 <input type="checkbox" className="mr-2" /> Book (10,448)
@@ -29,7 +22,8 @@ export const Products = () => {
                 <input type="checkbox" className="mr-2" /> E-book (4,208)
               </label>
               <label className="flex items-center">
-                <input type="checkbox" className="mr-2" /> Eco-friendly audiobook
+                <input type="checkbox" className="mr-2" /> Eco-friendly
+                audiobook
               </label>
             </div>
           </div>
@@ -50,8 +44,12 @@ export const Products = () => {
               <button className="px-3 py-1 border rounded">Eco-friendly</button>
             </div>
             <div className="flex items-center">
-              <button className="p-1 border rounded mr-2"><Grid size={20} /></button>
-              <button className="p-1 border rounded mr-2"><List size={20} /></button>
+              <button className="p-1 border rounded mr-2">
+                <Grid size={20} />
+              </button>
+              <button className="p-1 border rounded mr-2">
+                <List size={20} />
+              </button>
               <select className="border p-1 rounded">
                 <option>Sort by: Recommended</option>
               </select>
@@ -60,7 +58,10 @@ export const Products = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {books.map((books) => (
-              <div key={books.id} className="border rounded-lg overflow-hidden">
+              <div 
+                key={books.id}
+                className="border rounded-lg overflow-hidden"
+              >
                 <div className="relative">
                   <img
                     src={books.imageUrl}
@@ -86,8 +87,8 @@ export const Products = () => {
                 <div className="p-4">
                   <h3 className="font-semibold">{books.title}</h3>
                   <p className="text-gray-600">{books.author}</p>
-                  <p className="font-bold mt-2">${books.price}</p>
-                  <button className="mt-2 w-full bg-green-500 text-white py-2 rounded">
+                  <p className="font-bold mt-2">${books.price}</p> 
+                  <button className="mt-2 w-full bg-green-500 text-white py-2 rounded" onClick={() => navigate(PathPublicRouter.productDetail, { state: books })}>
                     Shop
                   </button>
                 </div>
@@ -99,10 +100,8 @@ export const Products = () => {
            
             <span>Pagination placeholder</span>
           </div> */}
-          
         </main>
       </div>
     </div>
-    );
-  };
-  
+  );
+};

@@ -3,7 +3,7 @@ import { PathPublicRouter } from "./Routes/PathRoutes";
 import { Link } from "react-router-dom";
 import { ReactNode } from "react";
 
-export const LayoutPage: React.FC<{ children: ReactNode }> = ({ children }: any) =>{
+export const LayoutPage: React.FC<{ children: ReactNode }> = ({ children }: unknown) =>{
     return(
         <>
          <header className="bg-white shadow-sm">
