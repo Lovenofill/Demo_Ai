@@ -1,7 +1,7 @@
 import { Grid, List, Star } from "lucide-react";
-import { books } from "./data/mockdata";
 import { useNavigate } from "react-router-dom";
-import { PathPublicRouter } from "./Routes/PathRoutes";
+import { books } from "../data/mockdata";
+import { PathPublicRouter } from "../Routes/PathRoutes";
 
 export const Products = () => {
   const navigate = useNavigate();
@@ -58,10 +58,7 @@ export const Products = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {books.map((books) => (
-              <div 
-                key={books.id}
-                className="border rounded-lg overflow-hidden"
-              >
+              <div key={books.id} className="border rounded-lg overflow-hidden">
                 <div className="relative">
                   <img
                     src={books.imageUrl}
@@ -87,8 +84,13 @@ export const Products = () => {
                 <div className="p-4">
                   <h3 className="font-semibold">{books.title}</h3>
                   <p className="text-gray-600">{books.author}</p>
-                  <p className="font-bold mt-2">${books.price}</p> 
-                  <button className="mt-2 w-full bg-green-500 text-white py-2 rounded" onClick={() => navigate(PathPublicRouter.productDetail, { state: books })}>
+                  <p className="font-bold mt-2">${books.price}</p>
+                  <button
+                    className="mt-2 w-full bg-green-500 text-white py-2 rounded"
+                    onClick={() =>
+                      navigate(PathPublicRouter.productDetail, { state: books })
+                    }
+                  >
                     Shop
                   </button>
                 </div>
