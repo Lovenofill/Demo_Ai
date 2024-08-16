@@ -1,5 +1,6 @@
 import { Home } from "../Home";
 import CartPage from "../page/CartPage";
+import CheckoutPage from "../page/CheckoutPage";
 import { ProductDetail } from "../page/ProductDetail";
 import { Products } from "../page/ProductPage";
 
@@ -11,6 +12,7 @@ export const PathPublicRouter = {
   product: `${Host}productpage/`,
   productDetail: `${Host}productdetailpage/`,
   cart: `${Host}cartpage/`,
+  checkout: `${Host}checkoutPage/`,
 };
 
 export const PublicRouter = [
@@ -33,5 +35,10 @@ export const PublicRouter = [
     id: 3,
     path: PathPublicRouter.cart,
     element: <CartPage />,
+  },
+  {
+    id: 4,
+    path: PathPublicRouter.checkout,
+    element: <CheckoutPage />,
   },
 ];

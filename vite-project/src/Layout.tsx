@@ -6,10 +6,7 @@ import { ReactNode } from "react";
 export const LayoutPage: React.FC<{ children: ReactNode }> = ({
   children,
 }: unknown) => {
-  console.log(
-    "hahaha",
-    JSON.parse(window.localStorage.getItem("product")).length
-  );
+
 
   return (
     <>
