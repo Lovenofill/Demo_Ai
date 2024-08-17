@@ -15,7 +15,7 @@ export const LayoutPage: React.FC<{ children: ReactNode }> = observer(
             <div className="flex items-center">
               <img src={`${logo}`} width="50px" />
               <span className="ml-2 text-xl font-semibold text-gray-800">
-                <Link to={PathPublicRouter.home}>ร้านประหยัด</Link>
+                <Link to={PathPublicRouter.home}>ร้านที่อยากขายอะไรก็ขายไป</Link>
               </span>
             </div>
             <ul className="flex space-x-4">

@@ -6,6 +6,8 @@ import itemStore from "../stores/ItemStore";
 import { observer } from "mobx-react-lite";
 import { AddItemToCart } from "./ProductDetail";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import { PathPublicRouter } from "../Routes/PathRoutes";
 
 // interface Product {
 //   id: string;
@@ -21,6 +23,7 @@ import Swal from "sweetalert2";
 export const EditIteminCart = () => {};
 
 const CartPage: React.FC = () => {
+  const navigate = useNavigate();
   const [cartItems, setCartItems] = useState<Book[]>([]);
 
   const get = () => {
@@ -99,7 +102,7 @@ const CartPage: React.FC = () => {
       <div className="container mx-auto p-4">
         <main>
           <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 className="text-2xl font-bold mb-4">Shopping Cart</h2>
+            <h2 className="text-2xl font-bold mb-4">ตระกร้าสินค้า</h2>
             {cartItems.map((item: Book) => (
               <div
                 key={item.id}
@@ -141,16 +144,16 @@ const CartPage: React.FC = () => {
               <p className="text-xl font-bold">
                 {/* Total Amount: ${totalAmount.toFixed(2)} */}
               </p>
-              <button className="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700">
-                Proceed to Checkout
+              <button className="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700"   onClick={() =>navigate(PathPublicRouter.checkout, {})}>
+                ชำระเงิน
               </button>
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-md p-6">
+          {/* <div className="bg-white rounded-lg shadow-md p-6">
             <h2 className="text-2xl font-bold mb-4">Recommended Products</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* {recommendedProducts.map((product) => (
+              {recommendedProducts.map((product) => (
                 <div key={product.id} className="text-center">
                   <img
                     src={product.image}
@@ -160,9 +163,9 @@ const CartPage: React.FC = () => {
                   <h3 className="font-semibold">{product.name}</h3>
                   <p className="text-gray-600">${product.price.toFixed(2)}</p>
                 </div>
-              ))} */}
+              ))}
             </div>
-          </div>
+          </div> */}
         </main>
       </div>
     </div>

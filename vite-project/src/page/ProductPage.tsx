@@ -1,4 +1,3 @@
-import { Grid, List, Star } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Book, books } from "../data/mockdata";
 import { PathPublicRouter } from "../Routes/PathRoutes";
@@ -25,7 +24,7 @@ export const Products = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <div className="flex flex-1">
-        <aside className="w-64 bg-gray-100 p-4">
+        {/* <aside className="w-64 bg-gray-100 p-4">
           <div className="mb-4">
             <h4 className="text-lg font-semibold mb-2">
               Eco-friendly book type
@@ -47,7 +46,7 @@ export const Products = () => {
           <button className="w-full bg-blue-500 text-white py-2 rounded mt-4">
             Clear Filters
           </button>
-        </aside>
+        </aside> */}
 
         <main className="flex-1 p-4">
           <div className="flex justify-between items-center mb-4">
@@ -121,8 +120,7 @@ export const Products = () => {
                     </div>
                     <div className="p-4">
                       <h3 className="font-semibold">{books.title}</h3>
-                      <p className="text-gray-600">{books.author}</p>
-                      <p className="font-bold mt-2">${books.price}</p>
+                      <p className="font-bold mt-2">{books.price} ฿</p>
                       <button
                         className="mt-2 w-full bg-green-500 text-white py-2 rounded"
                         onClick={() =>

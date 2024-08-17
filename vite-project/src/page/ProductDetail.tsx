@@ -114,10 +114,7 @@ export const ProductDetail = observer(() => {
             ${state.price}
           </p>
           <p className="mb-4 text-sm md:text-base">
-            This black leather jacket is crafted from high-quality leather,
-            providing both style and comfort. Perfect for casual outings, it
-            features a modern cut and durable zipper. Available in various sizes
-            to fit your needs.
+            {state.details}
           </p>
           {/* <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
             <label htmlFor="size" className="font-semibold">Size:</label>
@@ -129,7 +126,7 @@ export const ProductDetail = observer(() => {
           </div> */}
           <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
             <label htmlFor="quantity" className="font-semibold">
-              Quantity:
+              จำนวน :
             </label>
             <input
               type="number"
@@ -144,9 +141,9 @@ export const ProductDetail = observer(() => {
             onClick={() => AddItemToCart(state, quantity)}
             className="w-full sm:w-auto bg-orange-500 text-white px-6 py-2 rounded hover:bg-orange-600 transition-colors"
           >
-            Add to Cart
+            เพิ่มสินค้าลงตะกร้า
           </button>
-          <div className="mt-8">
+          {/* <div className="mt-8">
             <h2 className="text-lg md:text-xl font-semibold mb-2">
               Customer Reviews
             </h2>
@@ -159,7 +156,7 @@ export const ProductDetail = observer(() => {
                 Emily Johnson: Love the material and the fit. Would recommend!
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

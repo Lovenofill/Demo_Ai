@@ -7,53 +7,12 @@ import { PiPantsThin } from "react-icons/pi";
 import { GiLargeDress } from "react-icons/gi";
 import { GiConverseShoe } from "react-icons/gi";
 import { PiWatch } from "react-icons/pi";
+import { PathPublicRouter } from "./Routes/PathRoutes";
+import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
-  //   const ecoFriendlyDeals = [
-  //     {
-  //       title: "Eco-friendly pet bed",
-  //       price: "$8.99",
-  //       oldPrice: "$13.99",
-  //       imgSrc: "url-to-image",
-  //       addToCart: true,
-  //     },
-  //     {
-  //       title: "Organic chicken treats",
-  //       price: "$8.99",
-  //       oldPrice: "$13.99",
-  //       imgSrc: "url-to-image",
-  //       addToCart: true,
-  //     },
-  //     {
-  //       title: "Sustainable pet bed",
-  //       price: "$8.99",
-  //       oldPrice: "$13.99",
-  //       imgSrc: "url-to-image",
-  //       addToCart: true,
-  //     },
-  //     {
-  //       title: "Healthy plant-based snacks",
-  //       price: "$5.99",
-  //       oldPrice: "$12.99",
-  //       imgSrc: "url-to-image",
-  //       addToCart: true,
-  //     },
-  //     {
-  //       title: "Eco-friendly utensils set",
-  //       price: "$9.99",
-  //       oldPrice: "$13.99",
-  //       imgSrc: "url-to-image",
-  //       addToCart: true,
-  //     },
-  //     {
-  //       title: "Eco-friendly notebooks pack",
-  //       price: "$6.99",
-  //       oldPrice: "$11.99",
-  //       imgSrc: "url-to-image",
-  //       addToCart: true,
-  //     },
-  //   ];
-
+ 
+  const navigate = useNavigate();
   const [data, setData] = useState<Book[]>(books || []);
   const [test, setTest] = useState<string>("");
 
@@ -86,15 +45,15 @@ export const Home = () => {
           <div className="flex flex-col lg:flex-row items-center justify-between mb-8">
             <div className="w-full lg:w-1/2 mb-8 lg:mb-0">
               <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                Discover sustainable products for a greener lifestyle
+                ศูนย์รวมเสื้อผ้าและเครื่องประดับทั้งหญิงและชาย 
               </h1>
               <p className="text-lg md:text-xl text-gray-600 mb-8">
-                Browse by category, brand, or eco-friendly deals
+              เสื้อผ้าและเครื่องประดับที่คู่ควรกับทุกคน
               </p>
             </div>
             <div className="w-full lg:w-1/2 lg:pl-8">
               <img
-                src="https://i.pinimg.com/564x/d5/3f/0a/d53f0a603be882e8ca88e61596733c9b.jpg"
+                src="https://files.vogue.co.th/uploads/AVAVAV_SS24_-_COVER_HORI.jpg"
                 alt="Eco-friendly concept"
                 className="rounded-full w-full h-64 lg:h-80 object-cover"
               />
@@ -132,26 +91,26 @@ export const Home = () => {
             {/* Left Column: Eco-friendly deals */}
             <div className="space-y-8">
               <div className="bg-white p-6 rounded-lg shadow-lg">
-                <h3 className="text-lg font-semibold mb-2">Eco-friendly</h3>
-                <p className="text-gray-500 mb-4">by Dr. Eco</p>
-                <div className="text-orange-500 font-bold text-xl">30% OFF</div>
-                <button className="mt-4 w-full bg-orange-500 text-white py-2 rounded-lg">
-                  Shop Now
+                <h3 className="text-lg font-semibold mb-2">โปรโมชันสำหรับสมาชิกใหม่</h3>
+                <p className="text-gray-500 mb-4">สมัครสมาชิกครั้งแรกรับส่วนลดไปเลย</p>
+                <div className="text-green-500 font-bold text-xl">ส่วนลด 30% </div>
+                <button className="mt-4 w-full bg-green-500 text-white py-2 rounded-lg">
+                  สมัครสมาชิกตอนนี้
                 </button>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg">
-                <h3 className="text-lg font-semibold mb-2">New Eco-Friendly</h3>
-                <p className="text-gray-500 mb-4">Discover our latest</p>
-                <div className="text-orange-500 font-bold text-xl">20% OFF</div>
-                <button className="mt-4 w-full bg-orange-500 text-white py-2 rounded-lg">
-                  Explore
+                <h3 className="text-lg font-semibold mb-2">โปรโมชัน Mid month sale</h3>
+                <p className="text-gray-500 mb-4">ส่วนลดสำหรับกลางเดือนเมื่อซื้อครบ 10,000 บาท</p>
+                <div className="text-green-500 font-bold text-xl">รับส่วนลดทันที20% </div>
+                <button className="mt-4 w-full bg-green-500 text-white py-2 rounded-lg">
+                  ซื้อเลยตอนนี้
                 </button>
               </div>
-              <div className="bg-red-500 p-6 rounded-lg shadow-lg text-white text-center">
+              {/* <div className="bg-red-500 p-6 rounded-lg shadow-lg text-white text-center">
                 <h3 className="text-lg font-semibold mb-4">ECO SALE</h3>
                 <p className="text-sm mb-4">Limited time offer</p>
                 <div className="text-3xl font-bold">1H 59M 7S</div>
-              </div>
+              </div> */}
             </div>
 
             {/* Middle and Right Columns: Trending eco-products */}
@@ -170,6 +129,10 @@ export const Home = () => {
                   <div
                     key={index}
                     className="eco-product bg-white shadow rounded-lg overflow-hidden"
+                    onClick={() =>
+                      navigate(PathPublicRouter.productDetail, {
+                        state: deal,
+                      })}
                   >
                     <img
                       src={deal.imageUrl}
@@ -182,17 +145,17 @@ export const Home = () => {
                       </p>
                       <p className="product-price text-gray-800">
                         <span className="current-price text-green-500">
-                          {deal.price}
+                          {deal.price} ฿
                         </span>
                         <span className="old-price text-gray-500 line-through ml-2">
-                          {deal.oldPrice}
+                          {deal.oldPrice} ฿
                         </span>
                       </p>
-                      {deal.addToCart && (
+                      {/* {deal.addToCart && (
                         <div className="text-center py-2 bg-gray-300 rounded-lg mt-2 cursor-pointer hover:bg-gray-400 transition duration-200">
                           Add to cart
                         </div>
-                      )}
+                      )} */}
                     </div>
                   </div>
                 ))}
@@ -201,7 +164,7 @@ export const Home = () => {
           </div>
 
           {/* Bottom Section: Top Eco Picks */}
-          <div className="mt-8">
+          {/* <div className="mt-8">
             <h2 className="text-xl font-semibold mb-4">Top Eco Picks</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="bg-white shadow rounded-lg overflow-hidden">
@@ -235,7 +198,7 @@ export const Home = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </main>
       </div>
     </>
