@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Trash2 } from "lucide-react";
-import { Book } from "../data/mockdata"; 
+import { Book } from "../data/mockdata";
 import { notify } from "../components/helper";
+import itemStore from "../stores/ItemStore";
+import { observer } from "mobx-react-lite";
+import { AddItemToCart } from "./ProductDetail";
+import Swal from "sweetalert2";
 
 // interface Product {
 //   id: string;
@@ -14,6 +18,8 @@ import { notify } from "../components/helper";
 //   quantity: number;
 // }
 
+export const EditIteminCart = () => {};
+
 const CartPage: React.FC = () => {
   const [cartItems, setCartItems] = useState<Book[]>([]);
 
@@ -23,10 +29,12 @@ const CartPage: React.FC = () => {
       setCartItems(JSON.parse(storedItems));
     }
   };
- 
+
   useEffect(() => {
     get();
   }, []);
+
+  console.log("cartItems", cartItems);
 
   // const recommendedProducts: Product[] = [
   //   {
@@ -60,10 +68,31 @@ const CartPage: React.FC = () => {
     setCartItems(test);
 
     if (test !== null) {
+      itemStore.setItem(test);
       window.localStorage.setItem("product", JSON.stringify(test));
-      notify("เอาสินค้าออกจากลงตะกร้าแล้ว");
+      // notify("เอาสินค้าออกจากลงตะกร้าแล้ว");
     }
   };
+
+  const alertRemove = (id) =>
+    Swal.fire({
+      title: "คุณแน่ใจใช่ไหม?",
+      text: "คุณจะไม่สามารถเปลี่ยนกลับสิ่งนี้ได้!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "ใช่ ลบเลย!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        removeItem(id);
+        Swal.fire({
+          title: "ลบแล้ว!",
+          text: "ลบออกจากตะกร้าแล้ว",
+          icon: "success",
+        });
+      }
+    });
 
   return (
     <div className="bg-gray-100 min-h-screen">
@@ -90,12 +119,17 @@ const CartPage: React.FC = () => {
                 <div className="flex items-center">
                   <input
                     type="number"
-                    // value={item.quantity}
+                    value={item.quantity}
                     className="w-16 px-2 py-1 border rounded mr-4"
-                    onChange={() => {}} // Add quantity change logic here
+                    // onChange={(e) =>
+                    //   AddItemToCart(item, parseInt(e.target.value))
+                    // } // Add quantity change logic here
+                    disabled
                   />
                   <button
-                    onClick={() => removeItem(item.id)}
+                    onClick={() => {
+                      alertRemove(item.id);
+                    }}
                     className="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600"
                   >
                     <Trash2 size={16} />
@@ -135,4 +169,4 @@ const CartPage: React.FC = () => {
   );
 };
 
-export default CartPage;
+export default observer(CartPage);

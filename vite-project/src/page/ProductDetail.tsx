@@ -3,9 +3,13 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Book } from "../data/mockdata";
 import { notify } from "../components/helper";
+import itemStore from "../stores/ItemStore";
+import { observer } from "mobx-react-lite";
 
-export const testA = (value: Book) => {
+export const AddItemToCart = (value: any, quantity: number) => {
   const storedItems = JSON.parse(window.localStorage.getItem("product"));
+
+  value = { ...value, quantity: quantity };
 
   console.log("storedItems", storedItems);
 
@@ -26,6 +30,11 @@ export const testA = (value: Book) => {
 
     if (find === undefined) {
       data = [...storedItems, value];
+    } else {
+      data = [
+        ...storedItems.filter((x: Book) => x.id !== find.id),
+        { ...find, quantity: find.quantity + quantity },
+      ];
     }
   } else {
     data = [value];
@@ -37,11 +46,12 @@ export const testA = (value: Book) => {
     notify("เพิ่มสินค้าลงตะกร้าแล้ว");
     window.localStorage.setItem("product", JSON.stringify(data));
   }
+
+  itemStore.setItem(data);
 };
 
-export const ProductDetail = () => {
+export const ProductDetail = observer(() => {
   const state: Book = useLocation().state;
-  console.log("state", state);
 
   const [quantity, setQuantity] = useState(1);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -131,7 +141,7 @@ export const ProductDetail = () => {
             />
           </div>
           <button
-            onClick={() => testA(state)}
+            onClick={() => AddItemToCart(state, quantity)}
             className="w-full sm:w-auto bg-orange-500 text-white px-6 py-2 rounded hover:bg-orange-600 transition-colors"
           >
             Add to Cart
@@ -154,4 +164,4 @@ export const ProductDetail = () => {
       </div>
     </div>
   );
-};
+});

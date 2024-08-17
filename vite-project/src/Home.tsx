@@ -1,16 +1,14 @@
-import { books } from "./data/mockdata";
+import { useState } from "react";
+import { Book, books, categories } from "./data/mockdata";
 import "./index.css";
+import { IoShirtSharp } from "react-icons/io5";
+import { LiaTshirtSolid } from "react-icons/lia";
+import { PiPantsThin } from "react-icons/pi";
+import { GiLargeDress } from "react-icons/gi";
+import { GiConverseShoe } from "react-icons/gi";
+import { PiWatch } from "react-icons/pi";
 
 export const Home = () => {
-  const categories = [
-    { name: "Dogs", icon: "🐕" }, // Replace with actual icon/image
-    { name: "Cats", icon: "🐈" }, // Replace with actual icon/image
-    { name: "Fish", icon: "🐟" }, // Replace with actual icon/image
-    { name: "Birds", icon: "🐦" }, // Replace with actual icon/image
-    { name: "Small pets", icon: "🐹" }, // Replace with actual icon/image
-    { name: "Reptiles", icon: "🦎" }, // Replace with actual icon/image
-  ];
-
   //   const ecoFriendlyDeals = [
   //     {
   //       title: "Eco-friendly pet bed",
@@ -55,6 +53,32 @@ export const Home = () => {
   //       addToCart: true,
   //     },
   //   ];
+
+  const [data, setData] = useState<Book[]>(books || []);
+  const [test, setTest] = useState<string>("");
+
+  const onChangeSearch = (e: string) => {
+    if (e === "" || e === test) {
+      setTest("");
+      setData(books);
+    } else {
+      const find = books.filter((x) =>
+        x.category.toLowerCase().includes(e.toLowerCase())
+      );
+
+      setData(find);
+    }
+  };
+
+  const iconArray: any = [
+    <LiaTshirtSolid size={60} />,
+    <IoShirtSharp size={60} />,
+    <PiPantsThin size={60} />,
+    <GiLargeDress size={60} />,
+    <GiConverseShoe size={60} />,
+    <PiWatch size={60} />,
+  ];
+
   return (
     <>
       <div className="min-h-screen bg-gray-100 flex flex-col">
@@ -67,16 +91,6 @@ export const Home = () => {
               <p className="text-lg md:text-xl text-gray-600 mb-8">
                 Browse by category, brand, or eco-friendly deals
               </p>
-              <div className="flex flex-col sm:flex-row">
-                <input
-                  type="text"
-                  placeholder="Search for eco-friendly products"
-                  className="w-full sm:w-2/3 px-4 py-2 rounded-t-lg sm:rounded-l-lg sm:rounded-t-none border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 mb-2 sm:mb-0"
-                />
-                <button className="w-full sm:w-1/3 bg-green-500 text-white px-6 py-2 rounded-b-lg sm:rounded-r-lg sm:rounded-b-none hover:bg-green-600 transition duration-200">
-                  Search
-                </button>
-              </div>
             </div>
             <div className="w-full lg:w-1/2 lg:pl-8">
               <img
@@ -89,18 +103,23 @@ export const Home = () => {
 
           {/* Categories Section */}
           <div className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4 text-black">
-              Categories
-            </h2>
+            <h2 className="text-2xl font-semibold mb-4 text-black">ประเภท</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 text-black">
               {categories.map((category) => (
                 <div
                   key={category.name}
+                  onClick={() => {
+                    setTest(category.name);
+                    onChangeSearch(category.name);
+                  }}
                   className="category-item flex flex-col items-center p-4 bg-white shadow rounded-lg cursor-pointer"
+                  style={{
+                    backgroundColor: category.name === test ? "gray" : "white",
+                  }}
                 >
-                  <div className="category-icon text-4xl md:text-5xl mb-2">
-                    {category.icon}
-                  </div>
+                  {/* <div className="category-icon text-4xl md:text-5xl mb-2"> */}
+                  {iconArray[category.icon - 1]}
+                  {/* </div> */}
                   <span className="text-sm md:text-lg text-center">
                     {category.name}
                   </span>
@@ -137,16 +156,17 @@ export const Home = () => {
 
             {/* Middle and Right Columns: Trending eco-products */}
             <div className="lg:col-span-2 space-y-8">
-              <div className="flex flex-wrap justify-between items-center mb-4">
+              <h1>สินค้า</h1>
+              {/* <div className="flex flex-wrap justify-between items-center mb-4">
                 <button className="w-full sm:w-auto bg-green-500 text-white px-4 py-2 rounded-lg shadow mb-2 sm:mb-0">
                   Eco-friendly deals
                 </button>
                 <button className="w-full sm:w-auto bg-green-500 text-white px-4 py-2 rounded-lg shadow">
                   Trending eco-products
                 </button>
-              </div>
+              </div> */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {books.map((deal, index) => (
+                {data.map((deal, index) => (
                   <div
                     key={index}
                     className="eco-product bg-white shadow rounded-lg overflow-hidden"

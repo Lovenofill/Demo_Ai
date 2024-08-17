@@ -1,3 +1,6 @@
+import { ReactElement } from 'react';
+
+
 export interface Book {
   id: number;
   title: string;
@@ -8,19 +11,33 @@ export interface Book {
   isNew?: boolean;
   addToCart: boolean;
   imagesList: string[];
+  category: string;
 }
+
+
 export interface Product {
   id: string;
   name: string;
   price: number;
   image: string;
 }
+
 const List: string[] = [
   "https://i.pinimg.com/564x/10/5e/52/105e52e36c3c0138057ad4439345dd33.jpg",
   "https://i.pinimg.com/564x/da/aa/35/daaa35a4f296c6e91f1758084d3c1e84.jpg",
   "https://i.pinimg.com/564x/02/e7/49/02e749ac2486c8c3fbe901d0a1fbf16a.jpg",
   "https://i.pinimg.com/564x/71/13/da/7113da1aaa5bbec5ab211eeb045cb79b.jpg",
 ];
+
+export const categories = [
+  { name: "เสื้อผู้ชาย", icon: 1 },
+  { name: "เสื้อผู้หญิง", icon: 2 },
+  { name: "กางเกง", icon: 3 },
+  { name: "ชุดเดรส", icon: 4 },
+  { name: "รองเท้าผ้าใบ", icon: 5 },
+  { name: "เครื่องประดับ", icon: 6 },
+]
+
 export const books: Book[] = [
   {
     id: 0,
@@ -29,9 +46,10 @@ export const books: Book[] = [
     price: 8.99,
     oldPrice: 13.99,
     imageUrl:
-      "https://i.pinimg.com/564x/c4/8b/77/c48b77924ccb4df2c0f54b202efdff4a.jpg",
+      "https://cf.shopee.co.th/file/9caed553814f80fe75416a7ab1d2f2db",
     imagesList: List,
     addToCart: true,
+    category: categories[0].name
   },
   {
     id: 1,
@@ -40,10 +58,11 @@ export const books: Book[] = [
     price: 8.99,
     oldPrice: 13.99,
     imageUrl:
-      "https://i.pinimg.com/564x/cf/22/5d/cf225d295a8dbed11fb3f6b474c29c5d.jpg",
+      "https://img.lazcdn.com/g/p/f616302aa6287914af960749a22624c9.jpg_360x360q75.jpg_.webp",
     imagesList: List,
     isNew: true,
     addToCart: true,
+    category: categories[1].name
   },
   {
     id: 2,
@@ -52,9 +71,10 @@ export const books: Book[] = [
     price: 8.99,
     oldPrice: 13.99,
     imageUrl:
-      "https://i.pinimg.com/564x/5c/c4/4a/5cc44aeb0f3120334e911cb6b61c80c1.jpg",
+      "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/461643/sub/goods_461643_sub14.jpg?width=494",
     imagesList: List,
     addToCart: true,
+    category: categories[2].name
   },
   {
     id: 3,
@@ -63,9 +83,10 @@ export const books: Book[] = [
     price: 8.99,
     oldPrice: 13.99,
     imageUrl:
-      "https://i.pinimg.com/736x/85/96/bb/8596bbc13a10d535cf2a7a0fc0aea2fa.jpg",
+      "https://cg.lnwfile.com/9vlv4q.jpg",
     imagesList: List,
     addToCart: true,
+    category: categories[3].name
   },
   {
     id: 4,
@@ -74,9 +95,10 @@ export const books: Book[] = [
     price: 8.99,
     oldPrice: 13.99,
     imageUrl:
-      "https://i.pinimg.com/564x/6f/5c/92/6f5c92c77657f738f4abcbd2ace2d411.jpg",
+      "https://img.lazcdn.com/g/p/e8721a585a9274c4a3cf5e8f9c653b7f.jpg_720x720q80.jpg",
     imagesList: List,
     addToCart: true,
+    category: categories[4].name
   },
   {
     id: 5,
@@ -85,9 +107,10 @@ export const books: Book[] = [
     price: 8.99,
     oldPrice: 13.99,
     imageUrl:
-      "https://i.pinimg.com/564x/c8/0d/65/c80d6580225fa74088a8d27936f7d7a1.jpg",
+      "https://www.watchaser.com/cdn/shop/products/rolex-daytona-rainbow-white-gold-dubai-5_800x.png?v=1673041177",
     imagesList: List,
     addToCart: true,
+    category: categories[5].name
   },
   {
     id: 6,
@@ -96,9 +119,10 @@ export const books: Book[] = [
     price: 8.99,
     oldPrice: 13.99,
     imageUrl:
-      "https://i.pinimg.com/564x/6f/a4/01/6fa4013e051223c821b4a4e35fe726db.jpg",
+      "https://g2000.co.th/cdn/shop/files/4112129200_01_058f95d2-ddaa-476d-aeec-3a3feba6d806_1080x.jpg?v=1710829485",
     imagesList: List,
     addToCart: true,
+    category: categories[0].name
   },
   {
     id: 7,
@@ -107,9 +131,10 @@ export const books: Book[] = [
     price: 8.99,
     oldPrice: 13.99,
     imageUrl:
-      "https://i.pinimg.com/564x/05/a9/f1/05a9f1e0b9367e693b4b3f86795c681f.jpg",
+      "https://down-id.img.susercontent.com/file/5c8e886273ba3048a63cf6b926f9c585",
     imagesList: List,
     addToCart: true,
+    category: categories[1].name
   },
 ];
 
