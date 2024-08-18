@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Book } from '../data/mockdata';
+import itemStore from '../stores/ItemStore';
+import { notify } from '../components/helper';
+import { PathPublicRouter } from '../Routes/PathRoutes';
+import { useNavigate } from 'react-router-dom';
 
 type OrderItem = {
   name: string;
@@ -8,16 +12,7 @@ type OrderItem = {
 };
 
 const CheckoutForm: React.FC = () => {
-
-  const orderItems: OrderItem[] = [
-    { name: "Smartphone XYZ", price: 599.99, image: "/api/placeholder/50/50" },
-    { name: "Wireless Headphones", price: 199.99, image: "/api/placeholder/50/50" },
-    { name: "Portable Speaker", price: 349.99, image: "/api/placeholder/50/50" },
-  ];
-
-
-
-
+  const navigate = useNavigate();
   const [cartItems, setCartItems] = useState<Book[]>([]);
 
   const get = () => {
@@ -37,6 +32,24 @@ const CheckoutForm: React.FC = () => {
   const shipping = 25.00;
   const tax = 92.00;
   const total = subtotal + shipping + tax;
+
+  const removeItem = (id: string) => {
+    const test = cartItems.filter((item) => item.id !== id);
+
+    setCartItems(test);
+
+    if (test !== null) {
+      itemStore.setItem(test);
+      window.localStorage.setItem("product", JSON.stringify(test));
+      // notify("เอาสินค้าออกจากลงตะกร้าแล้ว");
+    }
+  };
+const handlePayment = async()=>{
+  notify("ชำระเงินสำเร็จ")
+  cartItems.forEach((item:any) => removeItem(item.id));
+  await navigate(PathPublicRouter.home)
+}
+
 
   return (
     <div className="flex flex-col md:flex-row gap-8 p-6 bg-gray-100">
@@ -92,9 +105,13 @@ const CheckoutForm: React.FC = () => {
             <span>{total.toFixed(2)} ฿</span>
           </div>
         </div>
-        <button className="w-full bg-orange-500 text-white py-3 rounded mt-6 hover:bg-orange-600 transition-colors">
+        <button className="w-full bg-orange-500 text-white py-3 rounded mt-6 hover:bg-orange-600 transition-colors" onClick={handlePayment}>
           ยืนยันการชำระเงิน
         </button>
+
+
+
+
       </div>
     </div>
   );

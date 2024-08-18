@@ -39,31 +39,7 @@ const CartPage: React.FC = () => {
 
   console.log("cartItems", cartItems);
 
-  // const recommendedProducts: Product[] = [
-  //   {
-  //     id: "3",
-  //     name: "Leather Wallet",
-  //     price: 59.99,
-  //     image: "/api/placeholder/80/80",
-  //   },
-  //   {
-  //     id: "4",
-  //     name: "Silver Earrings",
-  //     price: 39.99,
-  //     image: "/api/placeholder/80/80",
-  //   },
-  //   {
-  //     id: "5",
-  //     name: "Canvas Backpack",
-  //     price: 79.99,
-  //     image: "/api/placeholder/80/80",
-  //   },
-  // ];
-
-  // const totalAmount = cartItems.reduce(
-  //   (total, item) => total + item.price * item.quantity,
-  //   0
-  // );
+  
 
   const removeItem = (id: string) => {
     const test = cartItems.filter((item) => item.id !== id);
