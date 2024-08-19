@@ -6,7 +6,8 @@ import itemStore from "./stores/ItemStore";
 
 const App: React.FC = () => {
   useEffect(() => {
-    itemStore.getItem(JSON.parse(window.localStorage.getItem("product")) || []);
+    const storedItemsString = window.localStorage.getItem("product");
+    itemStore.getItem(storedItemsString ? JSON.parse(storedItemsString) : []);
   }, []);
 
   return (

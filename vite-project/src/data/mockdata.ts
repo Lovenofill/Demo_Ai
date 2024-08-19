@@ -8,6 +8,7 @@ export interface Book {
   imagesList: string[];
   category: string;
   details:string;
+  quantity?: number
 }
 
 

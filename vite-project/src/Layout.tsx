@@ -7,7 +7,7 @@ import itemStore from "./stores/ItemStore";
 import { observer } from "mobx-react-lite";
 
 export const LayoutPage: React.FC<{ children: ReactNode }> = observer(
-  ({ children }: unknown) => {
+  ({ children }: any) => {
     return (
       <>
         <header className="bg-white shadow-sm">

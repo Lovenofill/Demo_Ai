@@ -33,7 +33,7 @@ const CheckoutForm: React.FC = () => {
   const tax = 92.00;
   const total = subtotal + shipping + tax;
 
-  const removeItem = (id: string) => {
+  const removeItem = (id: number) => {
     const test = cartItems.filter((item) => item.id !== id);
 
     setCartItems(test);

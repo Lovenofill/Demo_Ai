@@ -7,7 +7,8 @@ import itemStore from "../stores/ItemStore";
 import { observer } from "mobx-react-lite";
 
 export const AddItemToCart = (value: any, quantity: number) => {
-  const storedItems = JSON.parse(window.localStorage.getItem("product"));
+  const storedItemsString = window.localStorage.getItem("product");
+  const storedItems = storedItemsString ? JSON.parse(storedItemsString) : null;
 
   value = { ...value, quantity: quantity };
 
@@ -22,7 +23,7 @@ export const AddItemToCart = (value: any, quantity: number) => {
   }
 
   if (storedItems !== null && storedItems.length) {
-    const find: Book = storedItems.find((item: Book) => item.id === value.id);
+    const find: any = storedItems.find((item: Book) => item.id === value.id);
 
     console.log("find", find);
     console.log("find3", !find === undefined);
@@ -113,9 +114,7 @@ export const ProductDetail = observer(() => {
           <p className="text-xl md:text-2xl font-semibold mb-4">
             ${state.price}
           </p>
-          <p className="mb-4 text-sm md:text-base">
-            {state.details}
-          </p>
+          <p className="mb-4 text-sm md:text-base">{state.details}</p>
           {/* <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
             <label htmlFor="size" className="font-semibold">Size:</label>
             <select id="size" className="border rounded px-2 py-1">

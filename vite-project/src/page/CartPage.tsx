@@ -41,7 +41,7 @@ const CartPage: React.FC = () => {
 
   
 
-  const removeItem = (id: string) => {
+  const removeItem = (id: number) => {
     const test = cartItems.filter((item) => item.id !== id);
 
     setCartItems(test);
@@ -53,7 +53,7 @@ const CartPage: React.FC = () => {
     }
   };
 
-  const alertRemove = (id) =>
+  const alertRemove = (id: number) =>
     Swal.fire({
       title: "คุณแน่ใจใช่ไหม?",
       text: "คุณจะไม่สามารถเปลี่ยนกลับสิ่งนี้ได้!",
