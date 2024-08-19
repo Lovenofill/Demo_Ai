@@ -4,8 +4,7 @@ import CheckoutPage from "../page/CheckoutPage";
 import { ProductDetail } from "../page/ProductDetail";
 import { Products } from "../page/ProductPage";
 
-// const Host = import.meta.env.VITE_HOST ?? "/";
-const Host = "/";
+const Host = import.meta.env.VITE_HOST ?? "/"; 
 
 export const PathPublicRouter = {
   home: `${Host}`,
